@@ -1,0 +1,27 @@
+#wrapper{
+    width: 960px;
+    margin: 0px auto;
+}
+#nav{
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+.content{
+    display: flex;
+    justify-content: space-evenly;
+}
+input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.red_text {
+    color: red;
+    text-align: center;
+}
+
+.box{
+    border: 2px solid black;
+    padding: 20px 50px;
+}

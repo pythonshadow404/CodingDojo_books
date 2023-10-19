@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Home or Dashboard</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="nav">
+            <h1>{{user.username}}'s Dashboard</h1>
+            <a href="/feed">Book Feed</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="content">
+            <div class="box">
+                <h2>My Books</h2>
+                <ul>
+                    {% for book in user.books %}
+                        {%if book.title !=None %}
+                            <li><a href="/book/{{book.id}}">{{book.title}}</a></li>
+                        {%endif%}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box">
+                <h2>Create a Book</h2>
+                <form action="/create/book" method="POST">
+                    <label for="title">Title: </label>
+                    <input type="text" name="title">
+                    <label for="author">Author: </label>
+                    <input type="text" name="author">
+                    <label for="description">Description: </label>
+                    <input type="text" name="description">
+                    <label for="pages">Pages: </label>
+                    <input type="text" name="pages">
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    <input type="submit" value="Create Book">
+                    {#Now we also need to give a foreign key when create our book#}
+                    {#In the past we used to just give the foreign key but we don't do that anymore#}
+                    {#We will have to use a hidden input with name for foreign key and value of user id#}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

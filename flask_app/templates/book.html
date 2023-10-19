@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Display Book Info</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="nav">
+            <h1>{{book.title}}</h1>
+            <a href="/dashboard">Back</a>
+        </div>
+        <p>Author: {{book.author}}</p>
+        <p>Description: {{book.description}}</p>
+        <p>Pages: {{book.pages}}</p>
+        {% if book.user_id == session["user_id"] %}
+            <a href="/edit/book/{{book.id}}">Edit</a>
+            <a href="/delete/book/{{book.id}}">Delete</a>
+        {% endif %}
+    </div>
+</body>
+</html>

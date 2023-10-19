@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Register and Login</title>
+</head>
+<body>
+    {#login and register section#}
+    <div id="wrapper">
+        <div id="nav">
+            <h1>Book Database</h1>
+        </div>
+        {#We need our validation right below our nav bar#}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="red_text">{{message}}</p>
+                {%endfor%}
+            {%endif%}
+        {%endwith%}
+        {#login and registration section#}
+        <div class="content">
+            {#Since registration has to do with users, we going to users_controller#}
+            <div id="register" class="box">
+                <h2>Register</h2>
+                <form action="/register" method="POST">
+                    <div>
+                        <label for="username">Username: </label>
+                        <input type="text" name="username">
+                    </div>
+                    <div>
+                        <label for="email">Email: </label>
+                        <input type="email" name="email">
+                    </div>
+                    <div>
+                        <label for="password">Password: </label>
+                        <input type="password" name="password">
+                    </div>
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+            <div id="login" class= "box">
+                <h2>Login</h2>
+                <form action="/login" method="POST">
+                    <div>
+                        <label for="email">Email: </label>
+                        <input type="email" name="email">
+                    </div>
+                    <div>
+                        <label for="password">Password: </label>
+                        <input type="password" name="password">
+                    </div>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
